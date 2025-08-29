@@ -1,0 +1,51 @@
+# Eclipse / EMF / Workspace
+.metadata/
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*.log
+*.lock
+*.orig
+
+# Eclipse project settings
+com.orka.metamodel/.metadata/
+com.orka.metamodel/.settings/
+com.orka.metamodel.edit/.settings/
+com.orka.metamodel.editor/.settings/
+com.orka.metamodel/.classpath
+com.orka.metamodel/.project
+com.orka.metamodel.edit/.classpath
+com.orka.metamodel.edit/.project
+com.orka.metamodel.editor/.classpath
+com.orka.metamodel.editor/.project
+
+# Build output
+target/
+build/
+dist/
+out/
+
+# Generated files (can be regenerated from Ecore/Genmodel)
+*.genmodel
+*.ecorediag
+*.xmi~
+
+# Java build artifacts
+*.class
+*.jar
+*.war
+*.ear
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# IDE-specific
+.idea/
+*.iml
+.vscode/
+
+# Backup
+*~

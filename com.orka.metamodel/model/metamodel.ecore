@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="orkametamodel" nsURI="https://github.com/OrkaModeling/orka-metamodel"
+    nsPrefix="orkametamodel">
+  <eClassifiers xsi:type="ecore:EEnum" name="Provider">
+    <eLiterals name="Google"/>
+    <eLiterals name="AWS" value="1"/>
+    <eLiterals name="Azure" value="2"/>
+    <eLiterals name="Other" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Protocol">
+    <eLiterals name="HTTP"/>
+    <eLiterals name="HTTPS" value="1"/>
+    <eLiterals name="TCP" value="2"/>
+    <eLiterals name="UDP" value="3"/>
+    <eLiterals name="All" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Hypervisor">
+    <eLiterals name="VMWare"/>
+    <eLiterals name="XenServer" value="2"/>
+    <eLiterals name="RHEV" value="3"/>
+    <eLiterals name="KVM" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ServiceType">
+    <eLiterals name="LoadBalancer"/>
+    <eLiterals name="Ingress" value="1"/>
+    <eLiterals name="Egress" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Processor">
+    <eLiterals name="x64"/>
+    <eLiterals name="x86" value="1"/>
+    <eLiterals name="ARM" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PublicCluster" eSuperTypes="#//Cluster">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="num_nodes" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="config_file" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="provider" eType="#//Provider"
+        defaultValueLiteral="AWS"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OnPremises" eSuperTypes="#//Cluster">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hypervisor" eType="#//Hypervisor"
+        defaultValueLiteral="VMWare"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" lowerBound="1"
+        eType="#//Cluster" eOpposite="#//Cluster/nodes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resources" lowerBound="1"
+        upperBound="-1" eType="#//Resources" eOpposite="#//Resources/node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="public_ip" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="private_ip" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="os" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storage" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="processor" eType="#//Processor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EdgeNode" eSuperTypes="#//Node"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CloudNode" eSuperTypes="#//Node"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Zone">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="region" lowerBound="1"
+        eType="#//Region" eOpposite="#//Region/zone"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Region">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="zone" upperBound="-1" eType="#//Zone"
+        eOpposite="#//Zone/region"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" upperBound="-1"
+        eType="#//Cluster" eOpposite="#//Cluster/region"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IPRange">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subnetwork" lowerBound="1"
+        eType="#//Subnetwork" eOpposite="#//Subnetwork/iprange"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cidr_range" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//IPRangeType"
+        defaultValueLiteral="Service"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="public" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Subnetwork">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" upperBound="-1"
+        eType="#//Cluster" eOpposite="#//Cluster/subnetwork"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
+        eType="#//Network" eOpposite="#//Network/subnetwork"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iprange" lowerBound="1"
+        upperBound="-1" eType="#//IPRange" eOpposite="#//IPRange/subnetwork"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Network">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subnetwork" upperBound="-1"
+        eType="#//Subnetwork" eOpposite="#//Subnetwork/network"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securitygroups" upperBound="-1"
+        eType="#//SecurityGroup" eOpposite="#//SecurityGroup/network"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" upperBound="-1"
+        eType="#//Cluster" eOpposite="#//Cluster/network"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Service">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" lowerBound="1"
+        eType="#//Cluster" eOpposite="#//Cluster/services"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="securityGroup" eType="#//SecurityGroup"
+        eOpposite="#//SecurityGroup/services"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" eType="#//Application"
+        eOpposite="#//Application/services"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ServiceType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="target_port" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="protocol" eType="#//Protocol"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loadbalancer" eType="#//LoadBalancer"
+        eOpposite="#//LoadBalancer/services"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ingress" eType="#//Ingress"
+        eOpposite="#//Ingress/service"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SecurityGroup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network" lowerBound="1"
+        eType="#//Network" eOpposite="#//Network/securitygroups"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" lowerBound="1"
+        upperBound="-1" eType="#//Service" eOpposite="#//Service/securityGroup"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Application">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="requiredResources" upperBound="-1"
+        eType="#//Resources" eOpposite="#//Resources/application"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
+        eType="#//Service" eOpposite="#//Service/application"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" upperBound="-1"
+        eType="#//Container" eOpposite="#//Container/application"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageRepository" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="secret" eType="#//Secret"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configmap" eType="#//ConfigMap"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Resources">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="node" lowerBound="1" eType="#//Node"
+        eOpposite="#//Node/resources"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" lowerBound="1"
+        eType="#//Container" eOpposite="#//Container/resources"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
+        eType="#//Application" eOpposite="#//Application/requiredResources"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpu" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memory" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Deployment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" lowerBound="1"
+        eType="#//Cluster" eOpposite="#//Cluster/deployments"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="replicas" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containers" lowerBound="1"
+        upperBound="-1" eType="#//Container" eOpposite="#//Container/deployment"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="scalingpolicy" eType="#//ScalingPolicy"
+        eOpposite="#//ScalingPolicy/deployment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Container">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resources" upperBound="-1"
+        eType="#//Resources" eOpposite="#//Resources/container"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="volumes" upperBound="-1"
+        eType="#//Volume" eOpposite="#//Volume/container"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deployment" lowerBound="1"
+        eType="#//Deployment" eOpposite="#//Deployment/containers"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" lowerBound="1"
+        eType="#//Application" eOpposite="#//Application/container"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Volume">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" upperBound="-1"
+        eType="#//Container" eOpposite="#//Container/volumes"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mountPath" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="subPath" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="persistentvolume" eType="#//PersistentVolume"
+        eOpposite="#//PersistentVolume/volume"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="IPRangeType">
+    <eLiterals name="Subnetwork"/>
+    <eLiterals name="Pod" value="1"/>
+    <eLiterals name="Service" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ScalingPolicy">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minReplicas" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxReplicas" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="cpuThreshold" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="memoryThreshold" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Int"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deployment" eType="#//Deployment"
+        eOpposite="#//Deployment/scalingpolicy"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConfigMap">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="data" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Secret">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="encryptedData" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PersistentVolume">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="capacity" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="storageClass" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="accessMode" eType="#//AccessMode"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="volume" eType="#//Volume"
+        eOpposite="#//Volume/persistentvolume"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoadBalancer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//LoadBalancerType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" lowerBound="1"
+        eType="#//Cluster" eOpposite="#//Cluster/loadbalancers"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" upperBound="-1"
+        eType="#//Service" eOpposite="#//Service/loadbalancer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CloudProperties">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceType" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="imageId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iamRole" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tenantId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectId" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="provider" eType="#//Provider"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="region" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zone" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Ingress">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="host" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tlsSecret" eType="#//Secret"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="service" upperBound="-1"
+        eType="#//Service" eOpposite="#//Service/ingress"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="LoadBalancerType">
+    <eLiterals name="Internal"/>
+    <eLiterals name="External" value="1" literal="External"/>
+    <eLiterals name="Global" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AccessMode">
+    <eLiterals name="ReadWriteOnce"/>
+    <eLiterals name="ReadOnlyMany" value="1"/>
+    <eLiterals name="ReadWriteMany" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Monitoring">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tool" eType="#//MonitoringTool"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cluster" eType="#//Cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="application" eType="#//Application"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MonitoringTool">
+    <eLiterals name="CloudWatch"/>
+    <eLiterals name="AzureMonitor" value="1"/>
+    <eLiterals name="Prometheus" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cluster">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subnetwork" eType="#//Subnetwork"
+        eOpposite="#//Subnetwork/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="network" eType="#//Network"
+        eOpposite="#//Network/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="loadbalancers" eType="#//LoadBalancer"
+        eOpposite="#//LoadBalancer/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="services" eType="#//Service"
+        eOpposite="#//Service/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="deployments" eType="#//Deployment"
+        eOpposite="#//Deployment/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" eType="#//Node"
+        eOpposite="#//Node/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="region" eType="#//Region"
+        eOpposite="#//Region/cluster"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="net_conf" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+  </eClassifiers>
+</ecore:EPackage>
