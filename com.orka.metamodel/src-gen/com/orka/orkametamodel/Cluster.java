@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.orka.orkametamodel.Cluster#getRegion <em>Region</em>}</li>
  *   <li>{@link com.orka.orkametamodel.Cluster#isNet_conf <em>Net conf</em>}</li>
  *   <li>{@link com.orka.orkametamodel.Cluster#getName <em>Name</em>}</li>
+ *   <li>{@link com.orka.orkametamodel.Cluster#getOrkamodel <em>Orkamodel</em>}</li>
  * </ul>
  *
  * @see com.orka.orkametamodel.MetamodelPackage#getCluster()
@@ -240,5 +241,29 @@ public interface Cluster extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Orkamodel</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link com.orka.orkametamodel.OrkaModel#getClusters <em>Clusters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Orkamodel</em>' reference.
+	 * @see #setOrkamodel(OrkaModel)
+	 * @see com.orka.orkametamodel.MetamodelPackage#getCluster_Orkamodel()
+	 * @see com.orka.orkametamodel.OrkaModel#getClusters
+	 * @model opposite="clusters" required="true"
+	 * @generated
+	 */
+	OrkaModel getOrkamodel();
+
+	/**
+	 * Sets the value of the '{@link com.orka.orkametamodel.Cluster#getOrkamodel <em>Orkamodel</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Orkamodel</em>' reference.
+	 * @see #getOrkamodel()
+	 * @generated
+	 */
+	void setOrkamodel(OrkaModel value);
 
 } // Cluster

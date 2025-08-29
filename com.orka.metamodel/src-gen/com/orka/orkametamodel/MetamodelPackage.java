@@ -149,13 +149,22 @@ public interface MetamodelPackage extends EPackage {
 	int CLUSTER__NAME = 8;
 
 	/**
+	 * The feature id for the '<em><b>Orkamodel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLUSTER__ORKAMODEL = 9;
+
+	/**
 	 * The number of structural features of the '<em>Cluster</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLUSTER_FEATURE_COUNT = 9;
+	int CLUSTER_FEATURE_COUNT = 10;
 
 	/**
 	 * The number of operations of the '<em>Cluster</em>' class.
@@ -256,6 +265,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PUBLIC_CLUSTER__NAME = CLUSTER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Orkamodel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUBLIC_CLUSTER__ORKAMODEL = CLUSTER__ORKAMODEL;
 
 	/**
 	 * The feature id for the '<em><b>Num nodes</b></em>' attribute.
@@ -392,6 +410,15 @@ public interface MetamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ON_PREMISES__NAME = CLUSTER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Orkamodel</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ON_PREMISES__ORKAMODEL = CLUSTER__ORKAMODEL;
 
 	/**
 	 * The feature id for the '<em><b>Hypervisor</b></em>' attribute.
@@ -2082,6 +2109,52 @@ public interface MetamodelPackage extends EPackage {
 	int MONITORING_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link com.orka.orkametamodel.impl.OrkaModelImpl <em>Orka Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.orka.orkametamodel.impl.OrkaModelImpl
+	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getOrkaModel()
+	 * @generated
+	 */
+	int ORKA_MODEL = 26;
+
+	/**
+	 * The feature id for the '<em><b>Clusters</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORKA_MODEL__CLUSTERS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORKA_MODEL__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Orka Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORKA_MODEL_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Orka Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORKA_MODEL_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.Provider <em>Provider</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2089,7 +2162,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getProvider()
 	 * @generated
 	 */
-	int PROVIDER = 26;
+	int PROVIDER = 27;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.Protocol <em>Protocol</em>}' enum.
@@ -2099,7 +2172,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getProtocol()
 	 * @generated
 	 */
-	int PROTOCOL = 27;
+	int PROTOCOL = 28;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.Hypervisor <em>Hypervisor</em>}' enum.
@@ -2109,7 +2182,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getHypervisor()
 	 * @generated
 	 */
-	int HYPERVISOR = 28;
+	int HYPERVISOR = 29;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.ServiceType <em>Service Type</em>}' enum.
@@ -2119,7 +2192,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getServiceType()
 	 * @generated
 	 */
-	int SERVICE_TYPE = 29;
+	int SERVICE_TYPE = 30;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.Processor <em>Processor</em>}' enum.
@@ -2129,7 +2202,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getProcessor()
 	 * @generated
 	 */
-	int PROCESSOR = 30;
+	int PROCESSOR = 31;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.IPRangeType <em>IP Range Type</em>}' enum.
@@ -2139,7 +2212,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getIPRangeType()
 	 * @generated
 	 */
-	int IP_RANGE_TYPE = 31;
+	int IP_RANGE_TYPE = 32;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.LoadBalancerType <em>Load Balancer Type</em>}' enum.
@@ -2149,7 +2222,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getLoadBalancerType()
 	 * @generated
 	 */
-	int LOAD_BALANCER_TYPE = 32;
+	int LOAD_BALANCER_TYPE = 33;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.AccessMode <em>Access Mode</em>}' enum.
@@ -2159,7 +2232,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getAccessMode()
 	 * @generated
 	 */
-	int ACCESS_MODE = 33;
+	int ACCESS_MODE = 34;
 
 	/**
 	 * The meta object id for the '{@link com.orka.orkametamodel.MonitoringTool <em>Monitoring Tool</em>}' enum.
@@ -2169,7 +2242,7 @@ public interface MetamodelPackage extends EPackage {
 	 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getMonitoringTool()
 	 * @generated
 	 */
-	int MONITORING_TOOL = 34;
+	int MONITORING_TOOL = 35;
 
 	/**
 	 * Returns the meta object for class '{@link com.orka.orkametamodel.PublicCluster <em>Public Cluster</em>}'.
@@ -3620,6 +3693,49 @@ public interface MetamodelPackage extends EPackage {
 	EAttribute getCluster_Name();
 
 	/**
+	 * Returns the meta object for the reference '{@link com.orka.orkametamodel.Cluster#getOrkamodel <em>Orkamodel</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Orkamodel</em>'.
+	 * @see com.orka.orkametamodel.Cluster#getOrkamodel()
+	 * @see #getCluster()
+	 * @generated
+	 */
+	EReference getCluster_Orkamodel();
+
+	/**
+	 * Returns the meta object for class '{@link com.orka.orkametamodel.OrkaModel <em>Orka Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Orka Model</em>'.
+	 * @see com.orka.orkametamodel.OrkaModel
+	 * @generated
+	 */
+	EClass getOrkaModel();
+
+	/**
+	 * Returns the meta object for the reference list '{@link com.orka.orkametamodel.OrkaModel#getClusters <em>Clusters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Clusters</em>'.
+	 * @see com.orka.orkametamodel.OrkaModel#getClusters()
+	 * @see #getOrkaModel()
+	 * @generated
+	 */
+	EReference getOrkaModel_Clusters();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.orka.orkametamodel.OrkaModel#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see com.orka.orkametamodel.OrkaModel#getName()
+	 * @see #getOrkaModel()
+	 * @generated
+	 */
+	EAttribute getOrkaModel_Name();
+
+	/**
 	 * Returns the meta object for enum '{@link com.orka.orkametamodel.Provider <em>Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4855,6 +4971,40 @@ public interface MetamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CLUSTER__NAME = eINSTANCE.getCluster_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Orkamodel</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLUSTER__ORKAMODEL = eINSTANCE.getCluster_Orkamodel();
+
+		/**
+		 * The meta object literal for the '{@link com.orka.orkametamodel.impl.OrkaModelImpl <em>Orka Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.orka.orkametamodel.impl.OrkaModelImpl
+		 * @see com.orka.orkametamodel.impl.MetamodelPackageImpl#getOrkaModel()
+		 * @generated
+		 */
+		EClass ORKA_MODEL = eINSTANCE.getOrkaModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Clusters</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ORKA_MODEL__CLUSTERS = eINSTANCE.getOrkaModel_Clusters();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ORKA_MODEL__NAME = eINSTANCE.getOrkaModel_Name();
 
 		/**
 		 * The meta object literal for the '{@link com.orka.orkametamodel.Provider <em>Provider</em>}' enum.

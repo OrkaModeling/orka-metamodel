@@ -8,6 +8,7 @@ import com.orka.orkametamodel.LoadBalancer;
 import com.orka.orkametamodel.MetamodelPackage;
 import com.orka.orkametamodel.Network;
 import com.orka.orkametamodel.Node;
+import com.orka.orkametamodel.OrkaModel;
 import com.orka.orkametamodel.Region;
 import com.orka.orkametamodel.Service;
 import com.orka.orkametamodel.Subnetwork;
@@ -38,6 +39,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link com.orka.orkametamodel.impl.ClusterImpl#getRegion <em>Region</em>}</li>
  *   <li>{@link com.orka.orkametamodel.impl.ClusterImpl#isNet_conf <em>Net conf</em>}</li>
  *   <li>{@link com.orka.orkametamodel.impl.ClusterImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.orka.orkametamodel.impl.ClusterImpl#getOrkamodel <em>Orkamodel</em>}</li>
  * </ul>
  *
  * @generated
@@ -152,6 +154,16 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getOrkamodel() <em>Orkamodel</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrkamodel()
+	 * @generated
+	 * @ordered
+	 */
+	protected OrkaModel orkamodel;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -693,6 +705,74 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OrkaModel getOrkamodel() {
+		if (orkamodel != null && orkamodel.eIsProxy()) {
+			InternalEObject oldOrkamodel = (InternalEObject) orkamodel;
+			orkamodel = (OrkaModel) eResolveProxy(oldOrkamodel);
+			if (orkamodel != oldOrkamodel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetamodelPackage.CLUSTER__ORKAMODEL,
+							oldOrkamodel, orkamodel));
+			}
+		}
+		return orkamodel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrkaModel basicGetOrkamodel() {
+		return orkamodel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOrkamodel(OrkaModel newOrkamodel, NotificationChain msgs) {
+		OrkaModel oldOrkamodel = orkamodel;
+		orkamodel = newOrkamodel;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					MetamodelPackage.CLUSTER__ORKAMODEL, oldOrkamodel, newOrkamodel);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOrkamodel(OrkaModel newOrkamodel) {
+		if (newOrkamodel != orkamodel) {
+			NotificationChain msgs = null;
+			if (orkamodel != null)
+				msgs = ((InternalEObject) orkamodel).eInverseRemove(this, MetamodelPackage.ORKA_MODEL__CLUSTERS,
+						OrkaModel.class, msgs);
+			if (newOrkamodel != null)
+				msgs = ((InternalEObject) newOrkamodel).eInverseAdd(this, MetamodelPackage.ORKA_MODEL__CLUSTERS,
+						OrkaModel.class, msgs);
+			msgs = basicSetOrkamodel(newOrkamodel, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetamodelPackage.CLUSTER__ORKAMODEL, newOrkamodel,
+					newOrkamodel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -730,6 +810,11 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 				msgs = ((InternalEObject) region).eInverseRemove(this, MetamodelPackage.REGION__CLUSTER, Region.class,
 						msgs);
 			return basicSetRegion((Region) otherEnd, msgs);
+		case MetamodelPackage.CLUSTER__ORKAMODEL:
+			if (orkamodel != null)
+				msgs = ((InternalEObject) orkamodel).eInverseRemove(this, MetamodelPackage.ORKA_MODEL__CLUSTERS,
+						OrkaModel.class, msgs);
+			return basicSetOrkamodel((OrkaModel) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -756,6 +841,8 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 			return basicSetNodes(null, msgs);
 		case MetamodelPackage.CLUSTER__REGION:
 			return basicSetRegion(null, msgs);
+		case MetamodelPackage.CLUSTER__ORKAMODEL:
+			return basicSetOrkamodel(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -800,6 +887,10 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 			return isNet_conf();
 		case MetamodelPackage.CLUSTER__NAME:
 			return getName();
+		case MetamodelPackage.CLUSTER__ORKAMODEL:
+			if (resolve)
+				return getOrkamodel();
+			return basicGetOrkamodel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -838,6 +929,9 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 			return;
 		case MetamodelPackage.CLUSTER__NAME:
 			setName((String) newValue);
+			return;
+		case MetamodelPackage.CLUSTER__ORKAMODEL:
+			setOrkamodel((OrkaModel) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -878,6 +972,9 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 		case MetamodelPackage.CLUSTER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
+		case MetamodelPackage.CLUSTER__ORKAMODEL:
+			setOrkamodel((OrkaModel) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -908,6 +1005,8 @@ public class ClusterImpl extends MinimalEObjectImpl.Container implements Cluster
 			return net_conf != NET_CONF_EDEFAULT;
 		case MetamodelPackage.CLUSTER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		case MetamodelPackage.CLUSTER__ORKAMODEL:
+			return orkamodel != null;
 		}
 		return super.eIsSet(featureID);
 	}

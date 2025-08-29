@@ -23,6 +23,7 @@ import com.orka.orkametamodel.MonitoringTool;
 import com.orka.orkametamodel.Network;
 import com.orka.orkametamodel.Node;
 import com.orka.orkametamodel.OnPremises;
+import com.orka.orkametamodel.OrkaModel;
 import com.orka.orkametamodel.PersistentVolume;
 import com.orka.orkametamodel.Processor;
 import com.orka.orkametamodel.Protocol;
@@ -237,6 +238,13 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * @generated
 	 */
 	private EClass clusterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass orkaModelEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1579,6 +1587,42 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCluster_Orkamodel() {
+		return (EReference) clusterEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOrkaModel() {
+		return orkaModelEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getOrkaModel_Clusters() {
+		return (EReference) orkaModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOrkaModel_Name() {
+		return (EAttribute) orkaModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getProvider() {
 		return providerEEnum;
 	}
@@ -1843,6 +1887,11 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		createEReference(clusterEClass, CLUSTER__REGION);
 		createEAttribute(clusterEClass, CLUSTER__NET_CONF);
 		createEAttribute(clusterEClass, CLUSTER__NAME);
+		createEReference(clusterEClass, CLUSTER__ORKAMODEL);
+
+		orkaModelEClass = createEClass(ORKA_MODEL);
+		createEReference(orkaModelEClass, ORKA_MODEL__CLUSTERS);
+		createEAttribute(orkaModelEClass, ORKA_MODEL__NAME);
 
 		// Create enums
 		providerEEnum = createEEnum(PROVIDER);
@@ -2246,6 +2295,17 @@ public class MetamodelPackageImpl extends EPackageImpl implements MetamodelPacka
 		initEAttribute(getCluster_Net_conf(), theXMLTypePackage.getBoolean(), "net_conf", null, 0, 1, Cluster.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCluster_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, Cluster.class,
+				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCluster_Orkamodel(), this.getOrkaModel(), this.getOrkaModel_Clusters(), "orkamodel", null, 1,
+				1, Cluster.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(orkaModelEClass, OrkaModel.class, "OrkaModel", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOrkaModel_Clusters(), this.getCluster(), this.getCluster_Orkamodel(), "clusters", null, 0, -1,
+				OrkaModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOrkaModel_Name(), theXMLTypePackage.getString(), "name", null, 0, 1, OrkaModel.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

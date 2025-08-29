@@ -62,6 +62,7 @@ public class ClusterItemProvider extends ItemProviderAdapter implements IEditing
 			addRegionPropertyDescriptor(object);
 			addNet_confPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addOrkamodelPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -200,6 +201,21 @@ public class ClusterItemProvider extends ItemProviderAdapter implements IEditing
 						getString("_UI_PropertyDescriptor_description", "_UI_Cluster_name_feature", "_UI_Cluster_type"),
 						MetamodelPackage.Literals.CLUSTER__NAME, true, false, false,
 						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Orkamodel feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOrkamodelPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(), getString("_UI_Cluster_orkamodel_feature"),
+						getString("_UI_PropertyDescriptor_description", "_UI_Cluster_orkamodel_feature",
+								"_UI_Cluster_type"),
+						MetamodelPackage.Literals.CLUSTER__ORKAMODEL, true, false, true, null, null, null));
 	}
 
 	/**

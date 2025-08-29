@@ -256,6 +256,15 @@ public interface MetamodelFactory extends EFactory {
 	Cluster createCluster();
 
 	/**
+	 * Returns a new object of class '<em>Orka Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Orka Model</em>'.
+	 * @generated
+	 */
+	OrkaModel createOrkaModel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -109,6 +109,8 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 			return createMonitoring();
 		case MetamodelPackage.CLUSTER:
 			return createCluster();
+		case MetamodelPackage.ORKA_MODEL:
+			return createOrkaModel();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -434,6 +436,16 @@ public class MetamodelFactoryImpl extends EFactoryImpl implements MetamodelFacto
 	public Cluster createCluster() {
 		ClusterImpl cluster = new ClusterImpl();
 		return cluster;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OrkaModel createOrkaModel() {
+		OrkaModelImpl orkaModel = new OrkaModelImpl();
+		return orkaModel;
 	}
 
 	/**

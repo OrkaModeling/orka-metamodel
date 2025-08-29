@@ -258,5 +258,12 @@
         eOpposite="#//Region/cluster"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="net_conf" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orkamodel" lowerBound="1"
+        eType="#//OrkaModel" eOpposite="#//OrkaModel/clusters"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrkaModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clusters" upperBound="-1"
+        eType="#//Cluster" eOpposite="#//Cluster/orkamodel"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
   </eClassifiers>
 </ecore:EPackage>
