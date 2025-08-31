@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated metamodel -->
       <package
-            uri="https://github.com/OrkaModeling/orka-metamodel"
+            uri="urn:orka:metamodel"
             class="org.orka.orkametamodel.MetamodelPackage"
             genModel="model/metamodel.genmodel"/>
    </extension>

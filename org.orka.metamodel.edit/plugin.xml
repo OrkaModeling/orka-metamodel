@@ -9,7 +9,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated metamodel -->
       <factory
-            uri="https://github.com/OrkaModeling/orka-metamodel"
+            uri="urn:orka:metamodel"
             class="org.orka.orkametamodel.provider.MetamodelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
